@@ -1,0 +1,1 @@
+This directory will cover functions and nested loops. Crossed fingers for minimal errors. Osu!!!
