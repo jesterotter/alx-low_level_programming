@@ -1,28 +1,21 @@
 #include "holberton.h"
 
 /**
- * print_square - prints a square
- * @size: the size of the square
- *
+ * more_numbers - prints 10 times the numbers from 0 t0 14
  * Return: no return
  */
-void print_square(int size)
+void more_numbers(void)
 {
 int i, j;
 
-if (size > 0)
+for (i = 0; i < 10; i++)
 {
-for (i = 0; i < size; i++)
+for (j = 0; j <= 14; j++)
 {
-for (j = 0; j < size; j++)
-{
-_putchar('#');
+if (j >= 10)
+_putchar('0' + (j / 10));
+_putchar('0' + (j % 10));
 }
-_putchar('\n');
-}
-}
-else if (size <= 0)
-{
 _putchar('\n');
 }
 }
