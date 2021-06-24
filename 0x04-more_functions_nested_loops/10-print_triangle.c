@@ -1,35 +1,22 @@
 #include "holberton.h"
 
 /**
- * print_triangle - prints a triangle followed by a new line
- * @size: number of # and rows
- *
- * Return: no return
+ * print_triangle - print triangle of variable length
+ * @size: triangle height
  */
 void print_triangle(int size)
 {
-int a, b, c, col;
+	int i, m;
 
-columns = size - 1;
+	m = size;
 
-if (length > 0)
-{
-for (a = 0; a < size; a++)
-{
-for (b = 0; b < col; b++)
-{
-_putchar(' ');
-}
-columns--;
-for (c = 0; c < (a + 1); c++)
-{
-_putchar('#');
-}
-_putchar('\n');
-}
-}
-else if (length <= 0)
-{
-_putchar('\n');
-}
+	if (size <= 0)
+		_putchar('\n');
+	while (size > 0)
+	{
+		for (i = 0; i < m; i++)
+			_putchar((i < size - 1) ? ' ' : '#');
+		_putchar('\n');
+		size--;
+	}
 }
