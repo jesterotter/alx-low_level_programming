@@ -1,32 +1,54 @@
 #include "holberton.h"
+#include <stdio.h>
 
 /**
- * cap_string - capitalizes first letter of every word
- * @s: string to be changed
- *
- * Return: returns new string
+ * isLower - determines whether ascii is lowercase
+ * @c: character
+ * Return: 1 if true, 0 if false
+ */
+int isLower(char c)
+{
+	return (c >= 97 && c <= 122);
+}
+
+/**
+ * isDelimiter - determines whether ascii is a delimiter
+ * @c: character
+ * Return: 1 if true, 0 if false
+ */
+int isDelimiter(char c)
+{
+	int i;
+	char delimiter[] = " \t\n,.!?\"(){}";
+
+	for (i = 0; i < 12; i++)
+		if (c == delimiter[i])
+			return (1);
+	return (0);
+}
+
+/**
+ * cap_string - capitalizes all words of a string
+ * @s: input string
+ * Return: string with capitalized words
  */
 char *cap_string(char *s)
 {
-int i;
+	char *ptr = s;
+	int foundDelimit = 1;
 
-i = 0;
-
-while (*(s + i) != '\0')
-{
-if (*(s + 0) >= 'a' && *(s + 0) <= 'z')
-{
-*(s + 0) = *(s + 0) - 32;
-}
-if (s[i] == ' ' || s[i] == '\t' || s[i] == '\n' ||
-s[i] == ',' || s[i] == ';' || s[i] == '.' ||
-s[i] == '!' || s[i] == '?' || s[i] == '\"' ||
-[i] == '(' || s[i] == ')' || s[i] == '{' || s[i] == '}')
-{
-if (*(s + i + 1) >= 'a' && *(s + i + 1) <= 'z')
-*(s + i + 1) = *(s + i + 1) - 32;
-}
-i++;
-}
-return (s);
+	while (*s)
+	{
+		if (isDelimiter(*s))
+			foundDelimit = 1;
+		else if (isLower(*s) && foundDelimit)
+		{
+			*s -= 32;
+			foundDelimit = 0;
+		}
+		else
+			foundDelimit = 0;
+		s++;
+	}
+	return (ptr);
 }
