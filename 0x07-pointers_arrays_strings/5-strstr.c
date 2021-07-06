@@ -1,37 +1,57 @@
 #include "holberton.h"
-#include <stdio.h>
+#include <stdlib.h>
+
+#define true 1
+#define false 0
+#define bool int
 
 /**
- * _strstr - locate a substring
- *
- * @haystack: string to check
- * @needle: substring
- *
- * Return: substring or NULL if not located
+ * _strstr - locates a substring
+ * @haystack: string to be searched
+ * @needle: substring to be found
+ * Return: pointer to substring or NULL if not found
  */
 char *_strstr(char *haystack, char *needle)
 {
-int len, len2;
-int count = 0;
+	char *start = haystack;
+	char *_needle = needle;
+	bool found =  false;
 
-if (*(needle + count) == '\0')
-return (haystack);
-for (len = 0; *(haystack + len) != '\0'; len++)
-{
-len2 = 0;
-while (*(needle + len2) != '\0')
-{
-if (*(haystack + len) != *(needle + len2))
-break;
-if (*(needle + len2 + 1) != '\0')
-{
-len++;
-len2++;
-count++
+	if (!*_needle)
+		return (haystack);
+
+	while (*haystack)
+	{
+		if (*haystack == *needle)
+		{
+			found = true;
+			start = haystack;
+			while (*_needle)
+			{
+				if (*haystack != *_needle)
+				{
+					found = false;
+					_needle = needle;
+					break;
+				}
+
+				haystack++;
+				_needle++;
+			}
+		}
+
+		if (found)
+		{
+			break;
+		}
+
+		haystack++;
+	}
+	if (found)
+	{
+		return (start);
+	}
+
+	return (NULL);
 }
-else
-return ((haystack + len - count));
-}
-}
-return (NULL);
-}
+
