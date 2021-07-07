@@ -27,3 +27,7 @@ int is_prime_number(int n);
 /* 7-is_palindrome.c */
 int is_palindrome(char *s);
 
+/* 100-wildcmp.c */
+int wildcmp(char *s1, char *s2);
+
+#endif
