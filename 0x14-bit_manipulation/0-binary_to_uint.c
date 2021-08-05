@@ -1,32 +1,61 @@
 #include "holberton.h"
 
 /**
-* binary_to_uint - converts a binary number to an unsigned int
-* @b: string of 1s and 0s in char form
-*
-* Return: Converted number
-* 0 if there are one or more chars in b that are not 0 or 1
-* 0 if b is null
-*/
-unsigned int binary_to_uint(const char *b)
+ * powX - raises b to p
+ * @b: base
+ * @p: power
+ * Return: b the power of p
+ */
+int powX(int b, int p)
 {
-unsigned int output = 0, mul = 1;
-int len = 0;
+	int prod = 1;
 
-if (!b)
-return (0);
-
-while (b[len])
-len++;
-
-for (len -= 1; len >= 0; len--)
-{
-if (b[len] != '0' && b[len] != '1')
-return (0);
-
-output += (b[len] - '0') * mul;
-mul *= 2;
+	while (p > 0)
+	{
+		prod *= b;
+		p--;
+	}
+	return (prod);
 }
 
-return (output);
+/**
+ * _len - length of a string
+ * @s:string
+ * Return: lenght of s
+ */
+int _len(const char *s)
+{
+	int len = 0;
+
+	while (*s)
+	{
+		len++;
+		s++;
+	}
+	return (len);
+}
+/**
+ * binary_to_uint - converts a binary number to an unsigned int
+ * @b: input string
+ * Return: unsigned decimal conversion, 0 if input is NULL
+ */
+unsigned int binary_to_uint(const char *b)
+{
+	int power;
+	int num = 0;
+
+	if (!b)
+		return (0);
+	power = _len(b) - 1;
+	while (*b)
+	{
+		if (*b != '0' && *b != '1')
+			return (0);
+
+		if (*b == '1')
+			num += powX(2, power);
+		b++;
+		power--;
+	}
+	return (num);
 }
